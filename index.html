@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lirone Fitoussi - DevOps Engineer</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Courier Prime', monospace;
+            line-height: 1.6;
+            color: #00ff00;
+            background: #000000;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Matrix rain background effect */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                0deg,
+                rgba(0, 255, 0, 0.03) 0px,
+                rgba(0, 255, 0, 0.03) 1px,
+                transparent 1px,
+                transparent 2px
+            );
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        header {
+            background: rgba(0, 30, 0, 0.8);
+            border: 2px solid #00ff00;
+            padding: 40px;
+            border-radius: 5px;
+            margin-bottom: 30px;
+            text-align: center;
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.3), inset 0 0 20px rgba(0, 255, 0, 0.1);
+        }
+
+        h1 {
+            color: #00ff00;
+            margin-bottom: 10px;
+            font-size: 2.5em;
+            font-weight: 700;
+            text-shadow: 0 0 10px rgba(0, 255, 0, 0.8), 0 0 20px rgba(0, 255, 0, 0.5);
+            letter-spacing: 2px;
+            animation: glow 2s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% { text-shadow: 0 0 10px rgba(0, 255, 0, 0.8), 0 0 20px rgba(0, 255, 0, 0.5); }
+            50% { text-shadow: 0 0 20px rgba(0, 255, 0, 1), 0 0 30px rgba(0, 255, 0, 0.8); }
+        }
+
+        .title {
+            color: #00ff00;
+            font-size: 1.3em;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .contact-info {
+            color: #00ff00;
+            font-size: 0.95em;
+            margin-top: 15px;
+        }
+
+        .contact-info a {
+            color: #00ff00;
+            text-decoration: none;
+            margin: 0 10px;
+            border: 1px solid #00ff00;
+            padding: 5px 10px;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+
+        .contact-info a:hover {
+            background: #00ff00;
+            color: #000000;
+            box-shadow: 0 0 10px rgba(0, 255, 0, 0.8);
+        }
+
+        section {
+            background: rgba(0, 30, 0, 0.8);
+            border: 2px solid #00ff00;
+            padding: 30px;
+            border-radius: 5px;
+            margin-bottom: 30px;
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.3), inset 0 0 20px rgba(0, 255, 0, 0.1);
+        }
+
+        h2 {
+            color: #00ff00;
+            border-bottom: 2px solid #00ff00;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-shadow: 0 0 10px rgba(0, 255, 0, 0.6);
+        }
+
+        p {
+            color: #00ff00;
+        }
+
+        .skill-category {
+            margin-bottom: 20px;
+        }
+
+        .skill-category h3 {
+            color: #00ff00;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+            text-transform: uppercase;
+        }
+
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .skill-tag {
+            background: transparent;
+            color: #00ff00;
+            border: 1px solid #00ff00;
+            padding: 8px 15px;
+            border-radius: 2px;
+            font-size: 0.9em;
+            transition: all 0.3s;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .skill-tag:hover {
+            background: #00ff00;
+            color: #000000;
+            box-shadow: 0 0 10px rgba(0, 255, 0, 0.8);
+        }
+
+        .experience-item {
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #00441a;
+        }
+
+        .experience-item:last-child {
+            border-bottom: none;
+        }
+
+        .role {
+            color: #00ff00;
+            font-weight: 700;
+            font-size: 1.1em;
+            text-transform: uppercase;
+        }
+
+        .company {
+            color: #00ff00;
+            font-style: italic;
+            opacity: 0.9;
+        }
+
+        .date {
+            color: #00aa00;
+            font-size: 0.9em;
+            margin-bottom: 8px;
+        }
+
+        .description {
+            color: #00ff00;
+            margin-top: 8px;
+        }
+
+        .description ul {
+            margin-left: 20px;
+            margin-top: 8px;
+        }
+
+        .description li {
+            margin-bottom: 5px;
+            color: #00ff00;
+        }
+
+        footer {
+            text-align: center;
+            color: #00ff00;
+            padding: 20px;
+            margin-top: 40px;
+            font-size: 0.9em;
+            border-top: 1px solid #00441a;
+            text-shadow: 0 0 10px rgba(0, 255, 0, 0.4);
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.8em;
+            }
+
+            h2 {
+                font-size: 1.4em;
+            }
+
+            section {
+                padding: 20px;
+            }
+
+            header {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>> LIRONE FITOUSSI</h1>
+            <div class="title">[ DEVOPS ENGINEER ]</div>
+            <div class="contact-info">
+                <a href="mailto:lirone@example.com">EMAIL</a>
+                <a href="https://github.com">GITHUB</a>
+                <a href="https://linkedin.com">LINKEDIN</a>
+            </div>
+        </header>
+
+        <section>
+            <h2>>>> ABOUT ME</h2>
+            <p>$ whoami</p>
+            <p>> Passionate DevOps Engineer with extensive experience in designing, implementing, and maintaining scalable cloud infrastructure. Specialized in containerization, CI/CD automation, and infrastructure as code. Committed to optimizing deployment pipelines and ensuring system reliability.</p>
+        </section>
+
+        <section>
+            <h2>>>> SKILLS</h2>
+            
+            <div class="skill-category">
+                <h3>$ cloud --platforms</h3>
+                <div class="skills">
+                    <span class="skill-tag">AWS</span>
+                    <span class="skill-tag">Azure</span>
+                    <span class="skill-tag">Google Cloud</span>
+                </div>
+            </div>
+
+            <div class="skill-category">
+                <h3>$ containers --orchestration</h3>
+                <div class="skills">
+                    <span class="skill-tag">Docker</span>
+                    <span class="skill-tag">Kubernetes</span>
+                    <span class="skill-tag">Docker Compose</span>
+                </div>
+            </div>
+
+            <div class="skill-category">
+                <h3>$ automation --cicd</h3>
+                <div class="skills">
+                    <span class="skill-tag">Jenkins</span>
+                    <span class="skill-tag">GitLab CI</span>
+                    <span class="skill-tag">GitHub Actions</span>
+                    <span class="skill-tag">Ansible</span>
+                    <span class="skill-tag">Terraform</span>
+                </div>
+            </div>
+
+            <div class="skill-category">
+                <h3>$ monitoring --logging</h3>
+                <div class="skills">
+                    <span class="skill-tag">Prometheus</span>
+                    <span class="skill-tag">ELK Stack</span>
+                    <span class="skill-tag">Grafana</span>
+                    <span class="skill-tag">DataDog</span>
+                </div>
+            </div>
+
+            <div class="skill-category">
+                <h3>$ dev --languages</h3>
+                <div class="skills">
+                    <span class="skill-tag">Bash</span>
+                    <span class="skill-tag">Python</span>
+                    <span class="skill-tag">Go</span>
+                    <span class="skill-tag">YAML</span>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>>>> EXPERIENCE</h2>
+
+            <div class="experience-item">
+                <div class="role">$ Senior DevOps Engineer</div>
+                <div class="company">// Tech Company Inc.</div>
+                <div class="date">2021 - Present</div>
+                <div class="description">
+                    <ul>
+                        <li>► Architected and maintained Kubernetes clusters serving 50+ microservices in production</li>
+                        <li>► Implemented CI/CD pipelines reducing deployment time by 60%</li>
+                        <li>► Developed Infrastructure as Code using Terraform and Ansible</li>
+                        <li>► Established monitoring and alerting systems using Prometheus and Grafana</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="experience-item">
+                <div class="role">$ DevOps Engineer</div>
+                <div class="company">// StartUp Solutions</div>
+                <div class="date">2019 - 2021</div>
+                <div class="description">
+                    <ul>
+                        <li>► Containerized legacy applications using Docker and deployed to AWS ECS</li>
+                        <li>► Created automated deployment scripts using Bash and Python</li>
+                        <li>► Managed cloud infrastructure on AWS including EC2, RDS, and S3</li>
+                        <li>► Implemented log aggregation and analysis using ELK stack</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="experience-item">
+                <div class="role">$ Junior DevOps Engineer</div>
+                <div class="company">// Digital Services Ltd.</div>
+                <div class="date">2018 - 2019</div>
+                <div class="description">
+                    <ul>
+                        <li>► Assisted in managing on-premises infrastructure</li>
+                        <li>► Supported CI/CD pipeline operations using Jenkins</li>
+                        <li>► Collaborated on cloud migration projects to AWS</li>
+                        <li>► Maintained server security and patching</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>>>> CERTIFICATIONS</h2>
+            <div class="skills">
+                <span class="skill-tag">AWS Certified Solutions Architect</span>
+                <span class="skill-tag">Kubernetes Certified Associate</span>
+                <span class="skill-tag">Docker Certified Associate</span>
+            </div>
+        </section>
+
+        <footer>
+            <p>> LIRONE FITOUSSI | DEVOPS ENGINEER | 2026</p>
+            <p>[System.Access.Granted]</p>
+        </footer>
+    </div>
+</body>
+</html>
