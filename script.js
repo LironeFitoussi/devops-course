@@ -3,7 +3,115 @@
 // Initialize page on load
 document.addEventListener('DOMContentLoaded', function() {
     initializeEventListeners();
-    initializeTerminalEf
+    initializeTerminalEffect();
+    addSectionObserver();
+    logToConsole('Portfolio loaded successfully');
+});
+
+/**
+ * Initialize all event listeners
+ */
+function initializeEventListeners() {
+    // Skill tag interactions
+    const skillTags = document.querySelectorAll('.skill-tag');
+    skillTags.forEach(tag => {
+        tag.addEventListener('click', handleSkillTagClick);
+        tag.addEventListener('mouseenter', highlightRelatedSkills);
+        tag.addEventListener('mouseleave', removeHighlight);
+    });
+
+    // Contact link tracking
+    const contactLinks = document.querySelectorAll('.contact-info a');
+    contactLinks.forEach(link => {
+        link.addEventListener('click', trackContactClick);
+    });
+}
+
+/**
+ * Handle skill tag clicks with visual feedback
+ */
+function handleSkillTagClick(event) {
+    const skill = event.target.textContent.trim();
+    logToConsole(`Skill selected: ${skill}`);
+    
+    // Add pulse animation
+    event.target.style.animation = 'none';
+    setTimeout(() => {
+        event.target.style.animation = 'skill-pulse 0.5s ease-out';
+    }, 10);
+    
+    // Show notification
+    showNotification(`${skill} - Expert level`);
+}
+
+/**
+ * Highlight related skills on hover
+ */
+function highlightRelatedSkills(event) {
+    const skill = event.target.textContent.trim();
+    const skillCategory = event.target.closest('.skill-category');
+    
+    if (skillCategory) {
+        const allTags = skillCategory.querySelectorAll('.skill-tag');
+        allTags.forEach(tag => {
+            if (tag !== event.target) {
+                tag.style.opacity = '0.5';
+            }
+        });
+    }
+}
+
+/**
+ * Remove highlight on mouse leave
+ */
+function removeHighlight(event) {
+    const skillCategory = event.target.closest('.skill-category');
+    if (skillCategory) {
+        const allTags = skillCategory.querySelectorAll('.skill-tag');
+        allTags.forEach(tag => {
+            tag.style.opacity = '1';
+        });
+    }
+}
+
+/**
+ * Track contact link clicks for analytics
+ */
+function trackContactClick(event) {
+    const link = event.target.textContent.trim();
+    logToConsole(`Contact link clicked: ${link}`);
+    
+    // Create custom event for analytics
+    const analyticsEvent = new CustomEvent('contactClicked', {
+        detail: { type: link, timestamp: new Date().toISOString() }
+    });
+    document.dispatchEvent(analyticsEvent);
+}
+
+/**
+ * Terminal effect simulation
+ */
+function initializeTerminalEffect() {
+    const commandsQueue = [
+        { text: '> Loading portfolio...', delay: 100 },
+        { text: '> Initializing DevOps environment...', delay: 500 },
+        { text: '> Compiling skills and experience...', delay: 900 },
+        { text: '> Portfolio ready!', delay: 1300 }
+    ];
+    
+    commandsQueue.forEach(cmd => {
+        setTimeout(() => {
+            logToConsole(cmd.text);
+        }, cmd.delay);
+    });
+}
+
+/**
+ * Add intersection observer for scroll animations
+ */
+function addSectionObserver() {
+    const observerOptions = {
+        threshold: 0.1,
         rootMargin: '0px 0px -50px 0px'
     };
 
